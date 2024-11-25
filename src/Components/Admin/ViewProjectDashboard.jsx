@@ -4,6 +4,7 @@ import './ViewProjectDashboard.css'; // Importing external CSS
 export default function ViewProjectDashboard({projects}) {
   return (
     <div className="App">
+      <h1>Your Projects</h1>
       <table className="dashboard-table">
         <thead>
           <tr>
