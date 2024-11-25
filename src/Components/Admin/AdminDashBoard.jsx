@@ -7,9 +7,7 @@ import '../Admin/AdminDashBoard.css';
 import Form from '../../UI/Form';
 
 export default function AdminDashBoard() {
-  const [projectUsers, setProjectUsers] = useState([
-    { Name: 'Sairaj Rajput', Email: 'sairajrajput6@gmail.com', Role: 'Manager' }
-  ]);
+  const [projectUsers, setProjectUsers] = useState([]);
 
   const [userName, setUserName] = useState('');
   const [userEmail, setUserEmail] = useState('');
@@ -91,20 +89,22 @@ export default function AdminDashBoard() {
               </Button>
             </Form>
 
-            <h3>Project Users</h3>
+            {projectUsers.length != 0 && <h3>Project Users</h3>}
             <div className="project-users">
               {projectUsers.map((user, index) => (
+               <>
                 <div key={index} className="user">
-                  <p>
-                    <strong>Name:</strong> {user.Name}
-                  </p>
-                  <p>
-                    <strong>Email:</strong> {user.Email}
-                  </p>
-                  <p>
-                    <strong>Role:</strong> {user.Role}
-                  </p>
+                    <p>
+                        <strong>Name:</strong> {user.Name}
+                    </p>
+                    <p>
+                        <strong>Email:</strong> {user.Email}
+                    </p>
+                    <p>
+                        <strong>Role:</strong> {user.Role}
+                    </p>
                 </div>
+               </>
               ))}
             </div>
           </div>
