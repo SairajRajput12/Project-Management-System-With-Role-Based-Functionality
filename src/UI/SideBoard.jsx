@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function SideBoard() {
+export default function SideBoard({children}) {
   return (
     <div className='options'>
-        <h1>Options</h1>
+        {children}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import './App.css';
-import DashBoard from './UI/DashBoard';
+import AdminDashBoard from './Components/Admin/AdminDashBoard';
 
 function App() {
   const [activeComponent, setActiveComponent] = useState(null);
@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       {/* <FormSelection changeState={changeState} activeComponent={activeComponent} /> */} 
-      <DashBoard />
+      <AdminDashBoard />
     </div>
   );
 }

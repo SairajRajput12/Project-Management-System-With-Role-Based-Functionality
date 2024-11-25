@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function ViewBoard() {
+export default function ViewBoard({children}) {
   return (
     <div className='data'>
-        <h1>View Board Dashboard</h1>
+        {children}
     </div>
   )
 }
