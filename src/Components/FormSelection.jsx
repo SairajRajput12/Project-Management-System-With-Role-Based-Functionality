@@ -31,7 +31,7 @@ function FormSelection({ changeState,activeComponent }) {
         </Button>
       </div>
       <div className="form-container">
-        {content || <p>Please select a form to display.</p>}
+        {content || <p>Select on which mode you will prefer to work with us.</p>}
       </div>
     </div>
   );
