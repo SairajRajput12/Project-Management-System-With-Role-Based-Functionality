@@ -14,7 +14,7 @@ export default function LoginForm() {
   return (
     <>
     <div className='signup-container'>
-    <h1>Testing: Login Form</h1>
+    <h1>Login Form</h1>
     <Form className='signup' onSubmit={SubmitForm}>
         <label>Enter your password</label> 
         <input type='password' /> 
