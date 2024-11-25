@@ -1,12 +1,14 @@
 import React from 'react'
 import './DashBoard.css'
+import SideBoard from './SideBoard'
+import ViewBoard from './ViewBoard'
 
 export default function DashBoard() {
   return (
     <>
         <div className='dashboard'> 
-            <div className='options'>Left Board</div>
-            <div className='data'>Right Board</div>
+            <SideBoard />
+            <ViewBoard />
         </div>
     </>
   )
