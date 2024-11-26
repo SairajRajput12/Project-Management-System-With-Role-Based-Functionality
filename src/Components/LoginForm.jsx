@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
-import Form from '../UI/Form';
+import { useFetcher, useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../Components/SignupForm.css';
 import Button from '../UI/Button';
+import { Form, redirect, useActionData, useNavigation } from 'react-router-dom';
 
 export default function LoginForm({ goBack }) {
   const [email, setEmail] = useState('');
@@ -10,7 +10,15 @@ export default function LoginForm({ goBack }) {
   const [message, setMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
+  const navigation = useNavigation(); 
+  const data = useActionData();  // gives the data that is genrated due to our action
+
+  const isSubmitting = navigation.state ==='submitting';
+  function cancelHandler() {
+    navigate('..');
+  }
+
 
   const SubmitForm = async (e) => {
     e.preventDefault();
@@ -53,10 +61,6 @@ export default function LoginForm({ goBack }) {
     }
   };
 
-  const signOut = () => {
-    localStorage.removeItem('authToken');
-    navigate('/login'); // Redirect to login page on signout
-  };
 
   return (
     <div className='signup-container'>
