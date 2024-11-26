@@ -45,6 +45,30 @@ def signup():
     write_users(users_data)
     return jsonify({"message": "User registered successfully."}), 200
 
+
+@app.route('/adminsignup', methods=['POST'])
+def admin_signup():
+    data = request.json
+    username = data.get('username')
+    password = data.get('password')
+    email = data.get('email')
+
+    print(username) 
+    print(email)
+    if not username or not password:
+        return jsonify({"message": "Username and password are required!"}), 400
+
+    users_data = read_users()
+    print(users_data)
+    print(len(users_data['admin']))
+    if len(users_data['admin']) != 0 and any(user['username'] == username for user in users_data['admin']):
+        return jsonify({"message": "User already exists!"}), 400
+
+    users_data['admin'].append({"username": username, "password": password,"email":email})
+    write_users(users_data)
+    return jsonify({"message": "User registered successfully."}), 200
+
+
 # Login route
 @app.route('/login', methods=['POST'])
 def login():
@@ -56,7 +80,7 @@ def login():
 
     if not username or not password:
         return jsonify({"message": "Username and password are required!"}), 400
-
+    print('79')
     users_data = read_users()
     for user in users_data['users']:
         if user['email'] == username and user['password'] == password:

@@ -6,11 +6,11 @@ import Button from '../UI/Button';
 export default function SignupForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role,setRole] = useState(''); 
   const [confirmPassword, setConfirmPassword] = useState('');
   const [email, setEmail] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [role,setRole] = useState(''); 
 
   // Handle form submission
   const SubmitForm = async (e) => {

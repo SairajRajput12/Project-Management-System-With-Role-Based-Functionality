@@ -31,5 +31,8 @@
             "role": "developer"
         }
     ],
-    "admin": []
+    "admin": [
+        {
+        }
+    ]
 }
