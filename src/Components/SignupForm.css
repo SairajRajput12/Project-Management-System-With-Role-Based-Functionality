@@ -29,6 +29,7 @@
 
 .submit-button{
     height: 40px; 
+    margin: 12px;
     width: 105px;
     color: white;
     background-color: black;

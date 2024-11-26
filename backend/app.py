@@ -2,12 +2,17 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 import json
 import os
+from dotenv import load_dotenv
+import jwt # this library is for generating tokens for authentication process and ensuring the proces of login and signup in frontend
+from datetime import datetime, timedelta
+
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Create the path to the users.json file
 DATA_FILE = os.path.join(os.getcwd(), 'data', 'data', 'users.json')
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # Ensure the directory exists
 os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
@@ -69,6 +74,26 @@ def admin_signup():
     return jsonify({"message": "User registered successfully."}), 200
 
 
+
+@app.route('/logout', methods=['POST'])
+def logout():
+    token = request.headers.get('Authorization')
+    if not token:
+        return jsonify({"message": "Token is missing!"}), 400
+
+    try:
+        token = token.split(" ")[1]  # Extract token from "Bearer <token>"
+        decoded = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+
+        # Add token to the blacklist
+        BLACKLIST.add(token)
+        return jsonify({"message": "Successfully logged out!"}), 200
+    except jwt.ExpiredSignatureError:
+        return jsonify({"message": "Token has already expired!"}), 400
+    except jwt.InvalidTokenError:
+        return jsonify({"message": "Invalid token!"}), 400
+
+
 # Login route
 @app.route('/login', methods=['POST'])
 def login():
@@ -84,9 +109,42 @@ def login():
     users_data = read_users()
     for user in users_data['users']:
         if user['email'] == username and user['password'] == password:
-            return jsonify({"message": "Login successful!"}), 200
+            token = jwt.encode({
+                'user_id': user['username'],
+                'exp': datetime.now() + timedelta(hours=1)
+            }, SECRET_KEY, algorithm='HS256')
+
+            return jsonify({"message": "Login successful!","level":"admin","role":user['role'],"token": token}), 200
+        
+    for user in users_data['admin']:
+        if user['email'] == username and user['password'] == password:
+            token = jwt.encode({
+                'user_id': user['username'],
+                'exp': datetime.now() + timedelta(hours=1)
+            }, SECRET_KEY, algorithm='HS256')
+
+            return jsonify({"message": "Login successful!","level":"admin", "token": token}), 200
+
 
     return jsonify({"message": "Invalid username or password!"}), 401
+
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    token = request.headers.get('Authorization')
+    if not token:
+        return jsonify({"message": "Token is missing!"}), 403
+
+    try:
+        token = token.split(" ")[1]  # Extract the token from the "Bearer <token>" format
+        decoded = jwt.decode(token, SECRET_KEY, algorithms=['HS256'])
+        username = decoded['username']
+        return jsonify({"message": f"Welcome, {username}!"}), 200
+    except jwt.ExpiredSignatureError:
+        return jsonify({"message": "Token has expired!"}), 403
+    except jwt.InvalidTokenError:
+        return jsonify({"message": "Invalid token!"}), 403
+
 
 if __name__ == "__main__":
     # Check if the file exists, if not create it with initial data

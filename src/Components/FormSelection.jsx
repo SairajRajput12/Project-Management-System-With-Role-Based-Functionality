@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '../UI/Button';
 import AdminSignup from './AdminSignup';
 import LoginForm from './LoginForm';
 import SingupForm from './SingupForm';
 
-function FormSelection({ changeState,activeComponent }) {
+function FormSelection() {
+    const [activeComponent,changeState] = useState('login')
     let content = null; // Default content to null
     console.log(content);
     if (activeComponent) {
@@ -19,7 +20,7 @@ function FormSelection({ changeState,activeComponent }) {
 
   return (
     <div>
-      <div className="button-container">
+      {content === null && <div className="button-container">
         <Button className='sample' onSubmit={() => changeState('adminSignup')}>
           Admin Signup Form
         </Button>
@@ -29,7 +30,7 @@ function FormSelection({ changeState,activeComponent }) {
         <Button className='sample' onSubmit={() => changeState('login')}>
           Login Form
         </Button>
-      </div>
+      </div>}
       <div className="form-container">
         {content || <p>Select on which mode you will prefer to work with us.</p>}
       </div>
