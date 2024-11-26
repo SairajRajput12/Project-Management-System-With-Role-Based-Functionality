@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./ManagerTaskBoard.css";
+import Button from "../../UI/Button";
 
-export default function ManagerTaskBoard({deleteTask,tasks,addTask,handleStatusChange}) {
+export default function ManagerTaskBoard({goBack,deleteTask,tasks,addTask,handleStatusChange}) {
   
 
   
@@ -47,6 +48,7 @@ export default function ManagerTaskBoard({deleteTask,tasks,addTask,handleStatusC
             </div>
           </div>
         ))}
+      <Button className='edit-project-button' onSubmit={goBack}>Back</Button>
       </div>
     </div>
   );

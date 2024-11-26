@@ -40,7 +40,7 @@ export default function ManagerProjects({projects}) {
   let heading = null; 
   if(index){
     heading = <h1>Task Board</h1>; 
-    content = <ManagerTaskBoard deleteTask ={deleteTask} tasks={tasks} handleStatusChange={handleStatusChange} addTask={addTask}  projects={projects}/>;
+    content = <ManagerTaskBoard goBack={() => setIndex(null)} deleteTask ={deleteTask} tasks={tasks} handleStatusChange={handleStatusChange} addTask={addTask}  projects={projects}/>;
   }
   else{
     heading = <h1>Your Projects</h1>; 
