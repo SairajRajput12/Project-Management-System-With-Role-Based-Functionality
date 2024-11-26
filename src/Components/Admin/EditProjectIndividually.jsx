@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import "./EditProjectIndividually.css";
 
-export default function EditProjectIndividually({ data }) {
+export default function EditProjectIndividually({ goback,data,index,updateProjectByIndex }) {
   const [projectData, setProjectData] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
 
   // Handle changes to input fields
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProjectData({ ...projectData, [name]: value });
+  
+    // Calculate the updated project data
+    const updatedData = { ...projectData, [name]: value };
+  
+    // Update the local state
+    setProjectData(updatedData);
+  
+    // Call the update function with the updated data
+    updateProjectByIndex(index, updatedData);
   };
+  
 
   // Toggle editing mode
   const toggleEditing = () => setIsEditing(!isEditing);
@@ -19,6 +28,7 @@ export default function EditProjectIndividually({ data }) {
     const updatedUsers = [...projectData.user];
     updatedUsers.splice(userIndex, 1); // Remove user
     setProjectData({ ...projectData, user: updatedUsers });
+    updateProjectByIndex(index,projectData)
   };
 
   return (
@@ -155,6 +165,8 @@ export default function EditProjectIndividually({ data }) {
               Cancel
             </button>
           )}
+
+          <button onClick={(e) => goback(e)}>Go Back</button>
         </div>
       </div>
     </div>

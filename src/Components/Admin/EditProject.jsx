@@ -3,13 +3,19 @@ import './EditProject.css'
 import Button from '../../UI/Button'
 import EditProjectIndividually from './EditProjectIndividually';
 
-export default function EditProject({projects}) {
+export default function EditProject({projects,updateProjectByIndex}) {
   console.log(projects);
   const [index,setIndex] = useState(null); 
   let content = null; 
   let content1 = null; 
+
+  const goback = (e) => { 
+    e.preventDefault(); 
+    setIndex(null); 
+  }
+
   if(index){
-    content = <EditProjectIndividually data={projects[index-1]} />
+    content = <EditProjectIndividually goback={goback} updateProjectByIndex={updateProjectByIndex} data={projects[index-1]} index={index-1} projects={projects} />
     content1 = 'Project Details';
   }
   else{
