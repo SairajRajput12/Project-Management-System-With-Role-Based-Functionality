@@ -6,6 +6,7 @@ import '../Manager/ManagerDashBoard.css';
 import Button from '../../UI/Button';
 import ManagerProjects from './ManagerProjects';
 import ViewManagerProjects from './ViewManagerProjects';
+import handleSignout from '../../util/signout';
 
 export default function ManagerDashBoard() {
     const [currentTab,setTab] = useState('your-project'); 
@@ -31,6 +32,7 @@ export default function ManagerDashBoard() {
         <SideBoard>
           <Button onSubmit={() => setTab('your-projects')} className="project-button">Your Projects</Button>
           <Button onSubmit={() => setTab('sairaj-is-best')} className="project-button">View Projects</Button>
+          <Button className="project-button" onSubmit={handleSignout}>Signout</Button>
         </SideBoard>
         <ViewBoard>
             {content}

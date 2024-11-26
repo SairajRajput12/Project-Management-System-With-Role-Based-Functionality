@@ -5,6 +5,7 @@ import ViewBoard from '../../UI/ViewBoard'
 import Button from '../../UI/Button'
 import UserProjects from './UserProjects'
 import ViewUserProjects from './ViewUserProjects'
+import handleSignout from '../../util/signout'
 
 export default function UserDashBoard() {
   const [currentTab,setTab] = useState('your-project'); 
@@ -30,6 +31,7 @@ export default function UserDashBoard() {
         <SideBoard>
           <Button onSubmit={() => setTab('user-projects')} className="project-button">Your Projects</Button>
           <Button onSubmit={() => setTab('sairaj-is-best')} className="project-button">View Projects</Button>
+          <Button className="project-button" onSubmit={handleSignout}>Signout</Button>
         </SideBoard>
         <ViewBoard>
             {content}

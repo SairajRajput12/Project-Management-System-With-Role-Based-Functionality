@@ -117,7 +117,7 @@ def login():
                 'exp': datetime.now() + timedelta(hours=1)
             }, SECRET_KEY, algorithm='HS256')
 
-            return jsonify({"message": "Login successful!","level":"admin","role":user['role'],"token": token}), 200
+            return jsonify({"message": "Login successful!","level":"user","role":user['role'],"token": token}), 200
         
     for user in users_data['admin']:
         if user['email'] == username and user['password'] == password:
