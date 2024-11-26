@@ -9,6 +9,8 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
+BLACKLIST = set()
+
 
 # Create the path to the users.json file
 DATA_FILE = os.path.join(os.getcwd(), 'data', 'data', 'users.json')
@@ -87,6 +89,7 @@ def logout():
 
         # Add token to the blacklist
         BLACKLIST.add(token)
+        
         return jsonify({"message": "Successfully logged out!"}), 200
     except jwt.ExpiredSignatureError:
         return jsonify({"message": "Token has already expired!"}), 400

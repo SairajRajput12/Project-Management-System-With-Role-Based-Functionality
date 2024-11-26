@@ -15,6 +15,11 @@
   html, body {
     overflow: hidden;
   }
+
+  body{
+    display: flex;
+    flex-direction: column;
+}
   
   
   .button-container {

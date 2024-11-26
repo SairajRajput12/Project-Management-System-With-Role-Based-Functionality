@@ -30,13 +30,18 @@ export default function LoginForm({ goBack }) {
         setSuccessMessage(result.message);
         console.log(result.token);
         console.log('Login successful!');
-
+        // console.log()
         // Redirect based on user role
+        console.log(result.level); 
+        console.log(result.role); 
         if (result.level === 'admin') {
+          console.log('Navigating to Admin Dashboard...');
           navigate('/admin'); // Navigate to Admin Dashboard
         } else if (result.role === 'manager') {
+          console.log('Navigating to manager Dashboard...');
           navigate('/manager'); // Navigate to Manager Dashboard
         } else {
+          console.log('Navigating to user Dashboard...');
           navigate('/user'); // Navigate to User Dashboard
         }
       } else {
@@ -75,7 +80,6 @@ export default function LoginForm({ goBack }) {
           Login
         </Button>
 
-        <Button onClick={goBack} className='submit-button'>Back</Button>
       </Form>
       {message && <p>{message}</p>}
       {errorMessage && <div className="error-message">{errorMessage}</div>}
