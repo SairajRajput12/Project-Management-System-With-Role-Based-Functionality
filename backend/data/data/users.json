@@ -1,0 +1,20 @@
+{
+    "users": [
+      {
+        "username": "sairaj rajput",
+        "email":"sairaj@mail.com",
+        "password": "password123"
+      },
+      {
+        "username": "sanket ganorkar",
+        "email":"sanket@gmail.com", 
+        "password": "securePass"
+      }, 
+      {
+        "username":"makima", 
+        "email":"iloveyousairaj@gmail.com",
+        "password":"sairaj maza raja"
+      }
+    ]
+  }
+  
