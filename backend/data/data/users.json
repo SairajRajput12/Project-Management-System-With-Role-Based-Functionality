@@ -1,20 +1,35 @@
 {
     "users": [
-      {
-        "username": "sairaj rajput",
-        "email":"sairaj@mail.com",
-        "password": "password123"
-      },
-      {
-        "username": "sanket ganorkar",
-        "email":"sanket@gmail.com", 
-        "password": "securePass"
-      }, 
-      {
-        "username":"makima", 
-        "email":"iloveyousairaj@gmail.com",
-        "password":"sairaj maza raja"
-      }
-    ]
-  }
-  
+        {
+            "username": "sairaj rajput",
+            "email": "sairaj@mail.com",
+            "password": "password123",
+            "role": "manager"
+        },
+        {
+            "username": "sanket ganorkar",
+            "email": "sanket@gmail.com",
+            "password": "securePass",
+            "role": "developer"
+        },
+        {
+            "username": "makima",
+            "email": "iloveyousairaj@gmail.com",
+            "password": "sairaj maza raja",
+            "role": "developer"
+        },
+        {
+            "username": "sairaj and makima",
+            "password": "sairaj",
+            "email": "iloveyousairaj@gmail.com",
+            "role": "developer"
+        },
+        {
+            "username": "sairajp",
+            "password": "sairaj",
+            "email": "iloveyousairaj@gmail.com",
+            "role": "developer"
+        }
+    ],
+    "admin": []
+}

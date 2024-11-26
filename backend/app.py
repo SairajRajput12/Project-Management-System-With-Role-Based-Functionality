@@ -32,7 +32,8 @@ def signup():
     data = request.json
     username = data.get('username')
     password = data.get('password')
-
+    email = data.get('email')
+    role = data.get('role')
     if not username or not password:
         return jsonify({"message": "Username and password are required!"}), 400
 
@@ -40,7 +41,7 @@ def signup():
     if any(user['username'] == username for user in users_data['users']):
         return jsonify({"message": "User already exists!"}), 400
 
-    users_data['users'].append({"username": username, "password": password})
+    users_data['users'].append({"username": username, "password": password,"email":email,"role":role})
     write_users(users_data)
     return jsonify({"message": "User registered successfully."}), 200
 
