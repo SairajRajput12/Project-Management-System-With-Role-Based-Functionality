@@ -4,7 +4,7 @@ import "./EditProjectIndividually.css";
 export default function EditProjectIndividually({ goback,data,index,updateProjectByIndex }) {
   const [projectData, setProjectData] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
-
+  console.log(data); 
   
   // Handle changes to input fields
   const handleChange = (e) => {
@@ -28,10 +28,16 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
   const handleRemoveUser = (userIndex) => {
     const updatedUsers = [...projectData.Users];
     updatedUsers.splice(userIndex, 1); // Remove user
-    console.log(updatedUsers)
-    setProjectData({ ...projectData, Users: updatedUsers });
-    updateProjectByIndex(index,projectData)
+    console.log('Updated Users:', updatedUsers);
+  
+    // Update the state
+    const updatedProjectData = { ...projectData, Users: updatedUsers };
+    setProjectData(updatedProjectData);
+  
+    // Use the updated state explicitly
+    updateProjectByIndex(index, updatedProjectData); // Use the updated object here
   };
+  
 
   return (
     <div className="project-container">
@@ -125,7 +131,6 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
         <div className="user-list">
           {projectData.Users && projectData.Users.length > 0 ? (
             projectData.Users.map((user, userIndex) =>{ 
-            console.log(user);
             return (
               <div key={userIndex} className="user-item">
                 {/* Display User Name */}

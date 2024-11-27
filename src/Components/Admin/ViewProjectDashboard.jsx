@@ -1,7 +1,8 @@
 import React from 'react';
 import './ViewProjectDashboard.css'; // Importing external CSS
 
-export default function ViewProjectDashboard({projects}) {
+export default function ViewProjectDashboard({ projects = [] }) {
+  console.log(projects)
   return (
     <div className="App">
       <h1>Your Projects</h1>

@@ -13,7 +13,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 export default function AdminDashBoard() {
   const navigate = useNavigate(); 
-  const [projects,setProjects] = useState([]);
+  const [projects,setProjects] = useState();
 
   const [currentState,changeState] = useState('create-project'); 
   const [userRole, setUserRole] = useState(null);
@@ -41,14 +41,17 @@ export default function AdminDashBoard() {
         }
         
         const result = await response.json();
-        setProjects(result.project_data); 
+        console.log(result['project_data'])
+        setProjects(result['project_data']); 
       }
       catch (err) {
         setError(err.message);
       }
     };
 
-    fetch_Data(); 
+    fetch_Data();
+    console.log('data fetched succesfully !!');
+    console.log(projects)
   }, [navigate]);
 
 
@@ -86,13 +89,12 @@ export default function AdminDashBoard() {
   };
 
   
-  
 
   let content = null; 
   if(currentState === 'create-project'){
     content = <CreateProject />
   }
-  else if(currentState === 'view-project'){
+  else if(projects != null && currentState === 'view-project'){
     content = <ViewProjectDashboard projects={projects} />
   }
   else{

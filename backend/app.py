@@ -57,7 +57,7 @@ def f_update_project():
             user_data["projects"] = []
         
         # Update projects
-        user_data["projects"] = project_data  # Overwrite projects; for partial updates, adjust logic
+        user_data["projects"] = project_data['project_data']  # Overwrite projects; for partial updates, adjust logic
         
         # Write updated data back
         print(user_data)
