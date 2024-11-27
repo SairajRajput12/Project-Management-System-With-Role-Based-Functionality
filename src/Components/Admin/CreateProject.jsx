@@ -32,6 +32,7 @@ export default function CreateProject({update_to_backend}) {
 
   const handleCreateProject = (e) => {
     e.preventDefault();
+    const user_name = localStorage.getItem('current_user')
     if (!projectName || !description || !startDate || !endDate) {
       alert('All fields for the project are required!');
       return;
@@ -55,7 +56,8 @@ export default function CreateProject({update_to_backend}) {
       Users: projectUsers,
       ProjectStatus: "Pending",
       Project_Manager: manager, 
-      Project_manager_mail: manager_mail
+      Project_manager_mail: manager_mail, 
+      admin: user_name,
     };
 
     console.log('Project Created:', newProject);

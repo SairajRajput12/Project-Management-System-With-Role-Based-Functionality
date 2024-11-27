@@ -89,170 +89,9 @@
                     "username": "sahil renapurkar"
                 }
             ],
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quam eaque facere nobis sit rerum nesciunt, architecto, nemo consequatur incidunt ab ullam, distinctio porro sequi?",
+            "admin": "sairaj rajput",
+            "description": "Best game ever i played yet.",
             "name": "GTA III Definative Edition"
-        },
-        {
-            "Ending_Date": "12/07/2002",
-            "ProjectStatus": "Completed",
-            "Project_Manager": "Sam Houser",
-            "Project_manager_mail": "samhouser6@gmail.com",
-            "Starting_Date": "01/01/1998",
-            "Users": [
-                {
-                    "progress": "80%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "develop frontend"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "sairaj rajput"
-                },
-                {
-                    "progress": "95%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "develop backend"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "review grpoup activities"
-                        }
-                    ],
-                    "username": "sanket ganorkar"
-                },
-                {
-                    "progress": "92%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "integrate changes"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "vilas rabad"
-                },
-                {
-                    "progress": "69%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "Look for marketting stuffs"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "tushar kalaskar"
-                },
-                {
-                    "progress": "94%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "See Clients"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "sahil renapurkar"
-                }
-            ],
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quam eaque facere nobis sit rerum nesciunt, architecto, nemo consequatur incidunt ab ullam, distinctio porro sequi?",
-            "name": "GTA Vice city definative edition"
-        },
-        {
-            "Ending_Date": "12/07/2008",
-            "ProjectStatus": "Completed",
-            "Project_Manager": "Dan Houser",
-            "Project_manager_mail": "danhouser6@gmail.com",
-            "Starting_Date": "01/01/2003",
-            "Users": [
-                {
-                    "progress": "80%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "develop frontend"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "sairaj rajput"
-                },
-                {
-                    "progress": "95%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "develop backend"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "review grpoup activities"
-                        }
-                    ],
-                    "username": "sanket ganorkar"
-                },
-                {
-                    "progress": "92%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "integrate changes"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "vilas rabad"
-                },
-                {
-                    "progress": "69%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "Look for marketting stuffs"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "tushar kalaskar"
-                },
-                {
-                    "progress": "94%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "See Clients"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "sahil renapurkar"
-                }
-            ],
-            "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quam eaque facere nobis sit rerum nesciunt, architecto, nemo consequatur incidunt ab ullam, distinctio porro sequi?",
-            "name": "GTA San Andrease Definative Edition"
         },
         {
             "Ending_Date": "12/07/2012",
@@ -260,6 +99,7 @@
             "Project_Manager": "Lezley Benzes",
             "Project_manager_mail": "LezelyBenzes@gmail.com",
             "Starting_Date": "01/01/2009",
+            "admin": "sairaj",
             "Users": [
                 {
                     "progress": "80%",
@@ -341,6 +181,7 @@
             "Project_Manager": "Sam Houser",
             "Project_manager_mail": "samhouser6@gmail.com",
             "Starting_Date": "01/01/2013",
+            "admin": "sairaj",
             "Users": [
                 {
                     "progress": "80%",

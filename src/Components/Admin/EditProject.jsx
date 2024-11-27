@@ -3,7 +3,7 @@ import './EditProject.css'
 import Button from '../../UI/Button'
 import EditProjectIndividually from './EditProjectIndividually';
 
-export default function EditProject({delete_project,projects,updateProjectByIndex}) {
+export default function EditProject({update_to_backend,delete_project,projects,updateProjectByIndex}) {
   console.log(projects);
   const [index,setIndex] = useState(null); 
   let content = null; 
@@ -15,7 +15,7 @@ export default function EditProject({delete_project,projects,updateProjectByInde
   }
 
   if(index){
-    content = <EditProjectIndividually goback={goback} updateProjectByIndex={updateProjectByIndex} data={projects[index-1]} index={index-1} projects={projects} />
+    content = <EditProjectIndividually update_to_backend={update_to_backend} goback={goback} updateProjectByIndex={updateProjectByIndex} data={projects[index-1]} index={index-1} projects={projects} />
     content1 = 'Project Details';
   }
   else{

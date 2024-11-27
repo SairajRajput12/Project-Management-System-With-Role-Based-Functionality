@@ -33,9 +33,17 @@ export default function AdminDashBoard() {
 
     // code to fetch the project data 
     const url = 'http://127.0.0.1:5000/fetch_data'; 
+    const username = localStorage.getItem('current_user'); 
+
     const fetch_Data = async () => {
       try{
-        const response = await fetch(url); 
+        const response = await fetch(url,{
+          method:'POST', 
+          headers: {
+           'Content-Type': 'application/json',
+         },
+         body: JSON.stringify({ user_name:username }), 
+       }); 
         if (!response.ok) {
           throw new Error(`Error: ${response.status}`);
         }
@@ -45,7 +53,7 @@ export default function AdminDashBoard() {
         setProjects(result['project_data']); 
       }
       catch (err) {
-        setError(err.message);
+        console.log('error is facing')
       }
     };
 
@@ -63,11 +71,13 @@ export default function AdminDashBoard() {
     );
     
     setProjects(updatedProjects);
-    update_to_backend(updatedProjects);
+    // update_to_backend(updatedProjects,index);
     console.log('Projects updated');
   }
 
-  const update_to_backend = async (updatedProjects) => {
+  const update_to_backend = async (updatedProjects,index) => {
+    let current_user = localStorage.getItem('current_user')
+    let project_name = projects[index].name;
     try {
       console.log('Sending data to backend', updatedProjects);
       const response = await fetch('http://127.0.0.1:5000/update_project', {
@@ -75,7 +85,7 @@ export default function AdminDashBoard() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ project_data: updatedProjects }), // Corrected body structure
+        body: JSON.stringify({ project_data: updatedProjects,current_user:current_user,project_name:project_name }), // Corrected body structure
       });
 
       if (!response.ok) {
@@ -88,9 +98,10 @@ export default function AdminDashBoard() {
     }
   };
 
-  const backend_create_project = async(updatedProjects) => {
+  const backend_create_project = async(updatedProjects,index) => {
     try {
       console.log('Sending data to backend', updatedProjects);
+      
       const response = await fetch('http://127.0.0.1:5000/add_projects', {
         method: 'POST',
         headers: {
@@ -109,9 +120,35 @@ export default function AdminDashBoard() {
     }
   }
 
+  const delete_to_backend = async (updatedProjects,project_delete_name) => {
+    let current_user = localStorage.getItem('current_user');
+    try {
+      console.log('Sending data to backend', updatedProjects);
+      const response = await fetch('http://127.0.0.1:5000/delete_project', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ current_user:current_user,project_name:project_delete_name }), // Corrected body structure
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data.message);
+    } catch (error) {
+      console.log('Error in connecting with backend server:', error.message);
+    }
+  };
+
+
+  
+
   function delete_project(index) {
     console.log("Project to delete is", index);
     index = index - 1; 
+    let project_delete_name = projects[index].name
 
     const isSure = window.confirm("Are you sure you want to delete this project?");
     if (!isSure) {
@@ -126,7 +163,7 @@ export default function AdminDashBoard() {
     setProjects(updatedProjects);
   
     // Send updated data to the backend
-    update_to_backend(updatedProjects);
+    delete_to_backend(updatedProjects,project_delete_name);
   
     console.log("Project deleted successfully!");
   }
@@ -142,7 +179,7 @@ export default function AdminDashBoard() {
     content = <ViewProjectDashboard projects={projects} />
   }
   else{
-    content = <EditProject delete_project={delete_project} updateProjectByIndex={updateProjectByIndex} projects={projects} />
+    content = <EditProject update_to_backend={update_to_backend} delete_project={delete_project} updateProjectByIndex={updateProjectByIndex} projects={projects} />
   }
 
 

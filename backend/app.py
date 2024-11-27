@@ -37,33 +37,110 @@ def write_users(data):
 @app.route('/update_project', methods=['POST'])
 def f_update_project():
     try:
-        print('updating starting !!!')
+        print('Updating starting !!!')
+        
         # Parse incoming JSON data
         data = request.json
-        print("Received data:", data)
+        project_data = data.get('project_data') 
+        current_user = data.get('current_user') 
+        project_name = data.get('project_name')
+        print('Project response received')
+        
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
+        
+        # Read existing user data
+        print('Line 53: User data fetched')
+        print('Below is the user data:')
+        print(project_name) 
+        print(current_user) 
+        
+        
+        user_data = read_users()
+        # Ensure that 'projects' exists in user_data
+        # print(user_data)
+        if 'projects' not in user_data:
+            return jsonify({"error": "Projects not found in user data"}), 400
+        
+        # Iterate through the projects list and update the matching project
+        project_updated = False  # Flag to track if any project was updated
+        # print(project_data)
+        print(user_data['projects'])
+        for i, project in enumerate(user_data['projects']): 
+            print(project['admin'])
+            print(project['name'])
+            print(project['name'])
+            print(project_name)
+            if project['admin'] == current_user and project['name'] == project_name:
+                # Update the project with the new data
+                print('condition match hot ahe')
+                print(user_data['projects'][i])
+                print()
+                print()
+                user_data['projects'][i] = project_data # Update the project with new data
+                print('after updation')
+                print(user_data['projects'][i])
+                print('')
+                print('')
+                project_updated = True
+                break  # Exit loop after the first match is found
+        
+        # If no project was updated, return an error
+        if not project_updated:
+            return jsonify({"error": "Project not found or user is not admin"}), 400
+        
+        # Write updated data back
+        print('Updated user data:', user_data)
+        write_users(user_data)
+        
+        return jsonify({"message": "Project updated successfully!"}), 200
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
-        project_data = data
-        print('project response mil gaya')
+@app.route('/delete_project', methods=['POST'])
+def df_update_project():
+    try:
+        print('Deletion starting !!!')
+        
+        # Parse incoming JSON data
+        data = request.json
+        current_user = data.get('current_user') 
+        project_name = data.get('project_name')
+        print('Project response received')
+        
         if not data:
             return jsonify({"error": "No data provided"}), 400
         
         # Read existing user data
         user_data = read_users()
-        print('line 53') 
-        print('below is user data')
-        print(user_data)
-        if "projects" not in user_data:
-            user_data["projects"] = []
+        print('Line 53: User data fetched')
+        print('Below is the user data:')
+        print(f"Current User: {current_user}, Project Name: {project_name}")
         
-        # Update projects
-        user_data["projects"] = project_data['project_data']  # Overwrite projects; for partial updates, adjust logic
+        # Ensure that 'projects' exists in user_data
+        if 'projects' not in user_data:
+            return jsonify({"error": "Projects not found in user data"}), 400
+        
+        # Filter out the project to delete
+        updated_projects = [
+            project for project in user_data['projects'] 
+            if not (project['admin'] == current_user and project['name'] == project_name)
+        ]
+        
+        # If no project was deleted, return an error
+        if len(updated_projects) == len(user_data['projects']):
+            return jsonify({"error": "Project not found or user is not admin"}), 400
+        
+        # Update the user data with the filtered projects
+        user_data['projects'] = updated_projects
         
         # Write updated data back
-        print(user_data)
         write_users(user_data)
         
-        return jsonify({"message": "Projects updated successfully!"}), 200
+        print('Updated user data:', user_data)
+        return jsonify({"message": "Project deleted successfully!"}), 200
     
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -215,6 +292,7 @@ def login():
         
     for user in users_data['admin']:
         if user['email'] == username and user['password'] == password:
+            name = user['username']
             token = jwt.encode({
                 'user_id': user['username'],
                 'exp': datetime.now() + timedelta(hours=1)
@@ -267,11 +345,47 @@ def update_user_tasks():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@app.route('/fetch_data',methods=['GET'])
+@app.route('/fetch_data', methods=['POST'])
 def get_projects():
-    user_data = read_users() 
-    project_data = user_data['projects']
-    return jsonify({"message":"Data fetched succesfully","project_data":project_data}),200
+    try:
+        print('Fetching user projects...')
+        data = request.json
+        print(data)
+        user_name = data.get('user_name')  # Getting user_name from the request body
+        
+        if not user_name:
+            return jsonify({"error": "User name is required!"}), 400
+        print(f"Fetching projects for user: {user_name}")
+
+        # Read user data
+        user_data = read_users()
+
+        projects = user_data.get('projects', [])
+        user_projects = []
+        # print(projects)
+        # Iterate through projects to find the ones that the user is assigned to or is the admin
+        for project in projects:
+            # print(project)
+            print('line 292',project["admin"])
+            
+            admin = project["admin"]  # Fetch the admin attribute
+            print(f"Project: {project['name']}, Admin: {admin}")
+            print(admin)
+            # If the user is either assigned to the project or is the admin
+            if user_name == admin:
+                user_projects.append(project)
+
+        print('appended')
+        # If no projects are found for the user
+        if not user_projects:
+            return jsonify({"message": "No projects found for the user", "project_data": []}), 200
+
+        return jsonify({"message": "Projects fetched successfully", "project_data": user_projects}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 
 @app.route('/fetch_tasks', methods=['POST'])
 def get_user_tasks():

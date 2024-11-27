@@ -21,6 +21,7 @@ export default function ManagerDashBoard() {
     console.log(projects)
     useEffect(() => {
       const token = localStorage.getItem('authToken');
+      const username = localStorage.getItem('current_user'); 
       if (token) {
         // Retrieve user role from localStorage
         const role = localStorage.getItem('userRole');
@@ -34,7 +35,13 @@ export default function ManagerDashBoard() {
       const url = 'http://127.0.0.1:5000/fetch_data'; 
       const fetch_Data = async () => {
         try{
-          const response = await fetch(url); 
+          const response = await fetch(url,{
+            method:'POST', 
+            headers: {
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify({ user_name:username }), 
+         }); 
           if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
           }

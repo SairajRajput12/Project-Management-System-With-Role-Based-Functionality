@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./EditProjectIndividually.css";
 
-export default function EditProjectIndividually({ goback,data,index,updateProjectByIndex }) {
+export default function EditProjectIndividually({ update_to_backend, goback,data,index,updateProjectByIndex }) {
   const [projectData, setProjectData] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
   console.log(data); 
@@ -11,6 +11,7 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
     const { name, value } = e.target;
   
     // Calculate the updated project data
+    console.log(name); 
     const updatedData = { ...projectData, [name]: value };
   
     // Update the local state
@@ -18,6 +19,7 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
   
     // Call the update function with the updated data
     updateProjectByIndex(index, updatedData);
+    
   };
   
 
@@ -36,7 +38,13 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
   
     // Use the updated state explicitly
     updateProjectByIndex(index, updatedProjectData); // Use the updated object here
+    update_to_backend(updatedProjectData,index)
   };
+
+  const handleSave = () => {
+      toggleEditing(); 
+      update_to_backend(projectData,index)
+  }
   
 
   return (
@@ -164,7 +172,7 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
 
         {/* Action Buttons */}
         <div className="buttons">
-          <button onClick={toggleEditing} className="button">
+          <button onClick={handleSave} className="button">
             {isEditing ? "Save Changes" : "Edit"}
           </button>
           {isEditing && (
