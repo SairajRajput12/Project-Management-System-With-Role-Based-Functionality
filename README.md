@@ -47,7 +47,7 @@ This project is built using **Flask** for the backend with a file-based system s
    ```
 4. Run the Flask server:
    ```bash
-   flask run
+   python app.py
    ```
    The backend server will start running on `http://127.0.0.1:5000`.
 
