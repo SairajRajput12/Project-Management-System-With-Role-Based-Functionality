@@ -12,7 +12,7 @@ export default function ManagerTaskBoard({goBack,deleteTask,tasks,addTask,handle
       <div className="task-list">
         {tasks.map((employee, employeeIndex) => (
           <div key={employeeIndex} className="employee-item">
-            <h2 className="employee-name">{employee.employee}</h2>
+            <h2 className="employee-name">{employee.username}</h2>
             <button onClick={() => addTask(employeeIndex)} className="add-task-button">
               Add Task
             </button>
@@ -20,7 +20,7 @@ export default function ManagerTaskBoard({goBack,deleteTask,tasks,addTask,handle
               {employee.tasks.map((task, taskIndex) => (
                 <div key={taskIndex} className="task-item">
                   <div className="task-details">
-                    <p><strong>Task:</strong> {task.name}</p>
+                    <p><strong>Task:</strong> {task.task_name}</p>
                   </div>
                   <div className="task-status">
                     <label htmlFor={`status-${employeeIndex}-${taskIndex}`}>Status:</label>

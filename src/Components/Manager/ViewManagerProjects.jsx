@@ -27,7 +27,7 @@ export default function ViewManagerProjects({projects}) {
                 color = 'red';
               }
               return(
-                <tr>
+                <tr key={index}> 
                   <td style={{fontWeight:'bold'}}>{user.name}</td>
                   <td style={{margin:'12px',color:color,fontWeight:'bold'}}>{user.ProjectStatus}</td>
                   <td>{user.Starting_Date}</td>

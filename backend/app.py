@@ -87,7 +87,43 @@ def signup():
     write_users(users_data)
     return jsonify({"message": "User registered successfully."}), 200
 
+@app.route('/update_tasks',methods=['POST'])
+def n_update_tasks(): 
+    try:
+        print('updating starting !!!')
+        # Parse incoming JSON data
+        data = request.json
+        print("Received data:", data)
+        index = data.get('index') 
+        project_data = data.get('task_data')
 
+
+        project_data = data
+        print('project response mil gaya')
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
+        
+        # Read existing user data
+        user_data = read_users()
+        print('line 53') 
+        print('below is user data')
+        print(user_data)
+        if "projects" not in user_data:
+            user_data["projects"] = []
+        
+        # Update projects
+        user_data["projects"][index]["Users"] = project_data['task_data']  # Overwrite projects; for partial updates, adjust logic
+        
+        # Write updated data back
+        print(user_data)
+        write_users(user_data)
+        
+        return jsonify({"message": "Projects updated successfully!"}), 200
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+    return jsonify({"message":"Task Updated Succesfully !!"})
 @app.route('/add_projects',methods=['POST']) 
 def add_project(): 
     data1 = request.json

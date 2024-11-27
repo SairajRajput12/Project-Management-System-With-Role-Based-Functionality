@@ -2,19 +2,18 @@ import React, { useState } from 'react'
 import Button from '../../UI/Button'
 import ManagerTaskBoard from './ManagerTaskBoard';
 
-export default function ManagerProjects({projects}) {
+export default function ManagerProjects({projects,updateProjectViaIndex}) {
   const [index,setIndex] = useState(null); 
 
-  const [tasks, setTasks] = useState([
-    { employee: "Sairaj Rajput", tasks: [{ name: "Develop Backend", status: "Ongoing" }] },
-    { employee: "Sanket Ganorkar", tasks: [{ name: "Design Frontend", status: "Not Completed" }] },
-  ]);
+  const [tasks, setTasks] = useState([]);
 
+  
   // Function to handle task status change
   const handleStatusChange = (employeeIndex, taskIndex, newStatus) => {
     const updatedTasks = [...tasks];
     updatedTasks[employeeIndex].tasks[taskIndex].status = newStatus;
     setTasks(updatedTasks);
+    updateProjectViaIndex(employeeIndex,tasks); 
   };
 
   // Function to add a new task for an employee
@@ -22,8 +21,9 @@ export default function ManagerProjects({projects}) {
     const taskName = prompt("Enter the task name:");
     if (taskName) {
       const updatedTasks = [...tasks];
-      updatedTasks[employeeIndex].tasks.push({ name: taskName, status: "Not Completed" });
+      updatedTasks[employeeIndex].tasks.push({ task_name: taskName, status: "Not Completed" });
       setTasks(updatedTasks);
+      updateProjectViaIndex(employeeIndex,updatedTasks)
     }
   };
 
@@ -32,13 +32,20 @@ export default function ManagerProjects({projects}) {
     const updatedTasks = [...tasks];
     updatedTasks[employeeIndex].tasks.splice(taskIndex, 1);
     setTasks(updatedTasks);
+    updateProjectViaIndex(employeeIndex,updatedTasks); 
   };
+
+  const handleIndex = (e,index) => {
+    setTasks(projects[index-1].Users); 
+    setIndex(projects[index-1]); 
+  }
 
 
 
   let content = null; 
   let heading = null; 
   if(index){
+    console.log(tasks); 
     heading = <h1>Task Board</h1>; 
     content = <ManagerTaskBoard goBack={() => setIndex(null)} deleteTask ={deleteTask} tasks={tasks} handleStatusChange={handleStatusChange} addTask={addTask}  projects={projects}/>;
   }
@@ -52,7 +59,7 @@ export default function ManagerProjects({projects}) {
                 <p className={`status ${user.ProjectStatus.toLowerCase()}`}>{user.ProjectStatus}</p>
                 </label>
                 <label>Assigned Date: {user.Starting_Date}</label>
-                <Button className='edit-project-button' onSubmit={() => setIndex(index+1)}>Edit Project</Button>
+                <Button className='edit-project-button' onSubmit={(e) => handleIndex(e,index+1)}>Edit Project</Button>
             </div>
         )
    });

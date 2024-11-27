@@ -52,7 +52,7 @@ export default function AdminDashBoard() {
     fetch_Data();
     console.log('data fetched succesfully !!');
     console.log(projects)
-  }, [navigate,projects]);
+  }, [navigate]);
 
 
 
