@@ -23,7 +23,7 @@ export default function ManagerProjects({projects,updateProjectViaIndex}) {
       const updatedTasks = [...tasks];
       updatedTasks[employeeIndex].tasks.push({ task_name: taskName, status: "Not Completed" });
       setTasks(updatedTasks);
-      updateProjectViaIndex(employeeIndex,updatedTasks)
+      updateProjectViaIndex(employeeIndex,tasks)
     }
   };
 
@@ -32,12 +32,15 @@ export default function ManagerProjects({projects,updateProjectViaIndex}) {
     const updatedTasks = [...tasks];
     updatedTasks[employeeIndex].tasks.splice(taskIndex, 1);
     setTasks(updatedTasks);
-    updateProjectViaIndex(employeeIndex,updatedTasks); 
+    updateProjectViaIndex(index,tasks); 
   };
 
-  const handleIndex = (e,index) => {
-    setTasks(projects[index-1].Users); 
-    setIndex(projects[index-1]); 
+  const handleIndex = (index1) => {
+    console.log(projects);
+    console.log(index1); 
+    setTasks(projects[index1-1].Users); 
+    setIndex(projects[index1-1]); 
+    console.log(projects[index1-1].Users); 
   }
 
 
@@ -59,7 +62,7 @@ export default function ManagerProjects({projects,updateProjectViaIndex}) {
                 <p className={`status ${user.ProjectStatus.toLowerCase()}`}>{user.ProjectStatus}</p>
                 </label>
                 <label>Assigned Date: {user.Starting_Date}</label>
-                <Button className='edit-project-button' onSubmit={(e) => handleIndex(e,index+1)}>Edit Project</Button>
+                <Button className='edit-project-button' onSubmit={() => handleIndex(index+1)}>Edit Project</Button>
             </div>
         )
    });

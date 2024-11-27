@@ -189,11 +189,17 @@ def n_update_tasks():
         
         # Update the "Users" attribute of the specified project
         project_found = False
+        # print(task_data) 
+        print('')
+        ind = 0
         for project in user_data['projects']: 
+            print(project.get('name'))
             if project.get('name') == project_name:  # Access project name correctly
-                project['Users'] = task_data  # Update the "Users" attribute
+                user_data['projects'][ind]['Users'] = task_data  # Update the "Users" attribute
+                print(user_data['projects'][ind]['Users'])
                 project_found = True
                 break  # Exit the loop once the project is found
+            ind = ind + 1
         
         if not project_found:
             return jsonify({"error": f"Project '{project_name}' not found!"}), 404

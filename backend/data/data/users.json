@@ -39,8 +39,8 @@
                     "role": "manager",
                     "tasks": [
                         {
-                            "task_name": "See Brothers",
-                            "status": "Completed"
+                            "task_name": "Review Progress",
+                            "status": "Not Completed"
                         }
                     ],
                     "username": "Lezley Benzes"
@@ -51,7 +51,7 @@
                     "role": "developer",
                     "tasks": [
                         {
-                            "task_name": "Arrange Meetings",
+                            "task_name": "See Revies",
                             "status": "Not Completed"
                         }
                     ],
@@ -74,12 +74,7 @@
                     "email": "sairaj@mail.com",
                     "progress": "0%",
                     "role": "manager",
-                    "tasks": [
-                        {
-                            "task_name": "See Brothers",
-                            "status": "Completed"
-                        }
-                    ],
+                    "tasks": [],
                     "username": "Lezley Benzes"
                 },
                 {
@@ -88,8 +83,8 @@
                     "role": "developer",
                     "tasks": [
                         {
-                            "task_name": "Arrange Meetings",
-                            "status": "Completed"
+                            "task_name": "See Revies",
+                            "status": "Not Completed"
                         }
                     ],
                     "username": "sanket ganorkar"
