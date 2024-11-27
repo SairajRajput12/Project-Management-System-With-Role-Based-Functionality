@@ -5,6 +5,7 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
   const [projectData, setProjectData] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
 
+  
   // Handle changes to input fields
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,9 +26,10 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
 
   // Remove a user from the project
   const handleRemoveUser = (userIndex) => {
-    const updatedUsers = [...projectData.user];
+    const updatedUsers = [...projectData.Users];
     updatedUsers.splice(userIndex, 1); // Remove user
-    setProjectData({ ...projectData, user: updatedUsers });
+    console.log(updatedUsers)
+    setProjectData({ ...projectData, Users: updatedUsers });
     updateProjectByIndex(index,projectData)
   };
 

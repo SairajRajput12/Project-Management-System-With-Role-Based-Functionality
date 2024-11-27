@@ -30,8 +30,43 @@ def read_users():
 
 # Helper function to write users
 def write_users(data):
+    print(data)
     with open(DATA_FILE, 'w') as file:
         json.dump(data, file, indent=4)
+
+@app.route('/update_project', methods=['POST'])
+def f_update_project():
+    try:
+        print('updating starting !!!')
+        # Parse incoming JSON data
+        data = request.json
+        print("Received data:", data)
+
+
+        project_data = data
+        print('project response mil gaya')
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
+        
+        # Read existing user data
+        user_data = read_users()
+        print('line 53') 
+        print('below is user data')
+        print(user_data)
+        if "projects" not in user_data:
+            user_data["projects"] = []
+        
+        # Update projects
+        user_data["projects"] = project_data  # Overwrite projects; for partial updates, adjust logic
+        
+        # Write updated data back
+        print(user_data)
+        write_users(user_data)
+        
+        return jsonify({"message": "Projects updated successfully!"}), 200
+    
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 # Signup route
 @app.route('/signup', methods=['POST'])

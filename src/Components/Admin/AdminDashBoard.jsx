@@ -19,7 +19,7 @@ export default function AdminDashBoard() {
   const [userRole, setUserRole] = useState(null);
   const [useToken, setUseToken] = useState(null);
 
-
+  console.log(projects)
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
@@ -51,13 +51,41 @@ export default function AdminDashBoard() {
     fetch_Data(); 
   }, [navigate]);
 
-  
+
 
   function updateProjectByIndex(index, newData) {
-    setProjects((prevProjects) =>
-      prevProjects.map((project, i) => (i === index ? { ...project, ...newData } : project))
+    console.log('inside update project by index function');
+    const updatedProjects = projects.map((project, i) =>
+      i === index ? { ...project, ...newData } : project
     );
+    
+    setProjects(updatedProjects);
+    update_to_backend(updatedProjects);
+    console.log('Projects updated');
   }
+
+  const update_to_backend = async (updatedProjects) => {
+    try {
+      console.log('Sending data to backend', updatedProjects);
+      const response = await fetch('http://127.0.0.1:5000/update_project', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ project_data: updatedProjects }), // Corrected body structure
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data.message);
+    } catch (error) {
+      console.log('Error in connecting with backend server:', error.message);
+    }
+  };
+
+  
   
 
   let content = null; 
