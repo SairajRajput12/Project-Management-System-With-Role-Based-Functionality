@@ -64,7 +64,7 @@ This project is built using **Flask** for the backend with a file-based system s
    ```bash
    npm run dev
    ```
-   The frontend application will run on `http://localhost:3000`.
+   The frontend application will run on `http://localhost:5173`.
 
 ---
 
