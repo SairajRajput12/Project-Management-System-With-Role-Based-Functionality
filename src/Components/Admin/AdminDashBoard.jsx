@@ -52,7 +52,7 @@ export default function AdminDashBoard() {
     fetch_Data();
     console.log('data fetched succesfully !!');
     console.log(projects)
-  }, [navigate]);
+  }, [navigate,projects]);
 
 
 
@@ -88,18 +88,64 @@ export default function AdminDashBoard() {
     }
   };
 
+  const backend_create_project = async(updatedProjects) => {
+    try {
+      console.log('Sending data to backend', updatedProjects);
+      const response = await fetch('http://127.0.0.1:5000/add_projects', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ project_data: updatedProjects }), // Corrected body structure
+      });
+
+      if (!response.ok) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log(data.message);
+    } catch (error) {
+      console.log('Error in connecting with backend server:', error.message);
+    }
+  }
+
+  function delete_project(index) {
+    console.log("Project to delete is", index);
+    index = index - 1; 
+
+    const isSure = window.confirm("Are you sure you want to delete this project?");
+    if (!isSure) {
+      console.log("Project deletion cancelled.");
+      return; // Exit the function if the user does not confirm
+    }
+
+    // Remove the project from the list
+    const updatedProjects = projects.filter((_, i) => i !== index);
+  
+    // Update the state
+    setProjects(updatedProjects);
+  
+    // Send updated data to the backend
+    update_to_backend(updatedProjects);
+  
+    console.log("Project deleted successfully!");
+  }
+  
+
   
 
   let content = null; 
   if(currentState === 'create-project'){
-    content = <CreateProject />
+    content = <CreateProject update_to_backend={backend_create_project} />
   }
   else if(projects != null && currentState === 'view-project'){
     content = <ViewProjectDashboard projects={projects} />
   }
   else{
-    content = <EditProject updateProjectByIndex={updateProjectByIndex} projects={projects} />
+    content = <EditProject delete_project={delete_project} updateProjectByIndex={updateProjectByIndex} projects={projects} />
   }
+
+
 
   return (
     <>

@@ -3,7 +3,7 @@ import './EditProject.css'
 import Button from '../../UI/Button'
 import EditProjectIndividually from './EditProjectIndividually';
 
-export default function EditProject({projects,updateProjectByIndex}) {
+export default function EditProject({delete_project,projects,updateProjectByIndex}) {
   console.log(projects);
   const [index,setIndex] = useState(null); 
   let content = null; 
@@ -27,6 +27,7 @@ export default function EditProject({projects,updateProjectByIndex}) {
           <label>Project Status: {user.ProjectStatus}</label>
           <label>Project manager: {user.Project_Manager}</label>
           <Button onSubmit={() => setIndex(index+1)} className='edit-project-button'>Edit Project</Button>
+          <Button onSubmit={() => delete_project(index+1)} className='edit-project-button'>Delete Project</Button>
       </div>
       )
     });

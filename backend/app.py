@@ -88,6 +88,27 @@ def signup():
     return jsonify({"message": "User registered successfully."}), 200
 
 
+@app.route('/add_projects',methods=['POST']) 
+def add_project(): 
+    data1 = request.json
+    data = data1['project_data']
+    print(data)
+
+    if not data:
+        return jsonify({"message": "data is not supplied!"}), 400
+
+    users_data = read_users()
+    print(users_data)
+    if len(users_data['projects']) != 0 and any(user['name'] == data['name'] for user in users_data['projects']):
+        return jsonify({"message": "Project Name already exists!, Please go for unique name"}), 400
+
+    users_data['projects'].append(data)
+    write_users(users_data)
+    return jsonify({"message": "User registered successfully."}), 200
+
+
+    
+
 @app.route('/adminsignup', methods=['POST'])
 def admin_signup():
     data = request.json

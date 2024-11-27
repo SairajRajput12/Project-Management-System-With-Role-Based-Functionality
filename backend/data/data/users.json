@@ -40,21 +40,21 @@
     ],
     "projects": [
         {
-            "Ending_Date": "12/07/1997",
-            "ProjectStatus": "completed",
+            "Ending_Date": "1998-07-30",
+            "ProjectStatus": "Completed",
             "Project_Manager": "Lezley Benzes",
             "Project_manager_mail": "LezelyBenzes@gmail.com",
-            "Starting_Date": "01/01/1994",
+            "Starting_Date": "1994-06-01",
             "Users": [
                 {
                     "progress": "80%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop frontend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -64,11 +64,11 @@
                     "progress": "69%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "Look for marketting stuffs"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -78,11 +78,11 @@
                     "progress": "94%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "See Clients"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -94,7 +94,7 @@
         },
         {
             "Ending_Date": "12/07/2002",
-            "ProjectStatus": "completed",
+            "ProjectStatus": "Completed",
             "Project_Manager": "Sam Houser",
             "Project_manager_mail": "samhouser6@gmail.com",
             "Starting_Date": "01/01/1998",
@@ -103,11 +103,11 @@
                     "progress": "80%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop frontend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -117,11 +117,11 @@
                     "progress": "95%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop backend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "review grpoup activities"
                         }
                     ],
@@ -131,11 +131,11 @@
                     "progress": "92%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "integrate changes"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -145,11 +145,11 @@
                     "progress": "69%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "Look for marketting stuffs"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -159,11 +159,11 @@
                     "progress": "94%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "See Clients"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -175,7 +175,7 @@
         },
         {
             "Ending_Date": "12/07/2008",
-            "ProjectStatus": "completed",
+            "ProjectStatus": "Completed",
             "Project_Manager": "Dan Houser",
             "Project_manager_mail": "danhouser6@gmail.com",
             "Starting_Date": "01/01/2003",
@@ -184,11 +184,11 @@
                     "progress": "80%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop frontend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -198,11 +198,11 @@
                     "progress": "95%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop backend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "review grpoup activities"
                         }
                     ],
@@ -212,11 +212,11 @@
                     "progress": "92%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "integrate changes"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -226,11 +226,11 @@
                     "progress": "69%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "Look for marketting stuffs"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -240,11 +240,11 @@
                     "progress": "94%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "See Clients"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -256,7 +256,7 @@
         },
         {
             "Ending_Date": "12/07/2012",
-            "ProjectStatus": "completed",
+            "ProjectStatus": "Completed",
             "Project_Manager": "Lezley Benzes",
             "Project_manager_mail": "LezelyBenzes@gmail.com",
             "Starting_Date": "01/01/2009",
@@ -265,11 +265,11 @@
                     "progress": "80%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop frontend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -279,11 +279,11 @@
                     "progress": "95%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop backend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "review grpoup activities"
                         }
                     ],
@@ -293,11 +293,11 @@
                     "progress": "92%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "integrate changes"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -307,11 +307,11 @@
                     "progress": "69%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "Look for marketting stuffs"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -321,11 +321,11 @@
                     "progress": "94%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "See Clients"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -337,7 +337,7 @@
         },
         {
             "Ending_Date": "12/07/2015",
-            "ProjectStatus": "completed",
+            "ProjectStatus": "Completed",
             "Project_Manager": "Sam Houser",
             "Project_manager_mail": "samhouser6@gmail.com",
             "Starting_Date": "01/01/2013",
@@ -346,11 +346,11 @@
                     "progress": "80%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop frontend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -360,11 +360,11 @@
                     "progress": "95%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "develop backend"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "review grpoup activities"
                         }
                     ],
@@ -374,11 +374,11 @@
                     "progress": "92%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "integrate changes"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -388,11 +388,11 @@
                     "progress": "69%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "Look for marketting stuffs"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
@@ -402,11 +402,11 @@
                     "progress": "94%",
                     "tasks": [
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "See Clients"
                         },
                         {
-                            "status": "completed",
+                            "status": "Completed",
                             "task_name": "organise meetings"
                         }
                     ],
