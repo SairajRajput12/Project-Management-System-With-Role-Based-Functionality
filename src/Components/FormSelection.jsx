@@ -20,6 +20,7 @@ function FormSelection() {
     }
 
   return (
+    
     <div className='form-select'>
       <div className="button-container">
         <Button className='sample' onSubmit={() => changeState('adminSignup')}>
@@ -33,8 +34,9 @@ function FormSelection() {
         </Button>
       </div>
       <div className="form-container">
-        {content || <p>Select on which mode you will prefer to work with us.</p>}
+        {content}
       </div>
+      {content === null && <h2 style={{marginLeft:'36%'}}>Select on which mode you will prefer to work with us.</h2>}
     </div>
   );
 }

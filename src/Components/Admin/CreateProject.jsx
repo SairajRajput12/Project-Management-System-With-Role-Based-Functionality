@@ -21,7 +21,7 @@ export default function CreateProject({update_to_backend}) {
     }
     setProjectUsers([
       ...projectUsers,
-      { Name: userName, Email: userEmail, Role: userRole,progress:"0%",tasks:[] },
+      { username: userName, email: userEmail, role: userRole,progress:"0%",tasks:[] },
     ]);
     setUserName('');
     setUserEmail('');

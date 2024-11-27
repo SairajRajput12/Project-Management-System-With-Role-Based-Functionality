@@ -16,18 +16,12 @@ export default function AdminDashBoard() {
   const [projects,setProjects] = useState();
 
   const [currentState,changeState] = useState('create-project'); 
-  const [userRole, setUserRole] = useState(null);
-  const [useToken, setUseToken] = useState(null);
 
   console.log(projects)
   useEffect(() => {
     const token = localStorage.getItem('authToken');
-    if (token) {
-      // Retrieve user role from localStorage
-      const role = localStorage.getItem('userRole');
-      setUseToken(token);
-    }
-    else{
+    const level = localStorage.getItem('level'); 
+    if (!token || level !== 'admin') {
       navigate('/'); 
     }
 

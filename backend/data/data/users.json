@@ -18,6 +18,11 @@
             "username": "sairaj rajput",
             "password": "12345",
             "email": "sairajrajput6@gmail.com"
+        },
+        {
+            "username": "sairaj desouza",
+            "password": "12345",
+            "email": "saorak"
         }
     ],
     "projects": [
@@ -29,46 +34,28 @@
             "Starting_Date": "1994-06-01",
             "Users": [
                 {
-                    "progress": "80%",
+                    "email": "sairaj@mail.com",
+                    "progress": "0%",
+                    "role": "manager",
                     "tasks": [
                         {
-                            "status": "Ongoing",
-                            "task_name": "develop frontend"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
+                            "task_name": "See Brothers",
+                            "status": "Completed"
                         }
                     ],
-                    "username": "sairaj rajput"
+                    "username": "Lezley Benzes"
                 },
                 {
-                    "progress": "69%",
+                    "email": "sanket@gmail.com",
+                    "progress": "0%",
+                    "role": "developer",
                     "tasks": [
                         {
-                            "status": "Ongoing",
-                            "task_name": "Look for marketting stuffs"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
+                            "task_name": "Arrange Meetings",
+                            "status": "Not Completed"
                         }
                     ],
-                    "username": "tushar kalaskar"
-                },
-                {
-                    "progress": "94%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "See Clients"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "sahil renapurkar"
+                    "username": "sanket ganorkar"
                 }
             ],
             "admin": "sairaj rajput",
@@ -84,74 +71,28 @@
             "admin": "sairaj",
             "Users": [
                 {
-                    "progress": "80%",
+                    "email": "sairaj@mail.com",
+                    "progress": "0%",
+                    "role": "manager",
                     "tasks": [
                         {
-                            "status": "Completed",
-                            "task_name": "develop frontend"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
+                            "task_name": "See Brothers",
+                            "status": "Completed"
                         }
                     ],
-                    "username": "sairaj rajput"
+                    "username": "Lezley Benzes"
                 },
                 {
-                    "progress": "95%",
+                    "email": "sanket@gmail.com",
+                    "progress": "0%",
+                    "role": "developer",
                     "tasks": [
                         {
-                            "status": "Completed",
-                            "task_name": "develop backend"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "review grpoup activities"
+                            "task_name": "Arrange Meetings",
+                            "status": "Completed"
                         }
                     ],
                     "username": "sanket ganorkar"
-                },
-                {
-                    "progress": "92%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "integrate changes"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "vilas rabad"
-                },
-                {
-                    "progress": "69%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "Look for marketting stuffs"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "tushar kalaskar"
-                },
-                {
-                    "progress": "94%",
-                    "tasks": [
-                        {
-                            "status": "Completed",
-                            "task_name": "See Clients"
-                        },
-                        {
-                            "status": "Completed",
-                            "task_name": "organise meetings"
-                        }
-                    ],
-                    "username": "sahil renapurkar"
                 }
             ],
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quam eaque facere nobis sit rerum nesciunt, architecto, nemo consequatur incidunt ab ullam, distinctio porro sequi?",
@@ -238,6 +179,32 @@
             ],
             "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci quam eaque facere nobis sit rerum nesciunt, architecto, nemo consequatur incidunt ab ullam, distinctio porro sequi?",
             "name": "GTA 5"
+        },
+        {
+            "name": "GTA Vice City Definative Edition",
+            "description": "Testing: This game is in developing stage...",
+            "Starting_Date": "1998-06-30",
+            "Ending_Date": "2002-07-12",
+            "Users": [
+                {
+                    "username": "Lezley Benzes",
+                    "email": "sairaj@mail.com",
+                    "role": "manager",
+                    "progress": "0%",
+                    "tasks": []
+                },
+                {
+                    "username": "sanket ganorkar",
+                    "email": "sanket@gmail.com",
+                    "role": "developer",
+                    "progress": "0%",
+                    "tasks": []
+                }
+            ],
+            "ProjectStatus": "Pending",
+            "Project_Manager": "Lezley Benzes",
+            "Project_manager_mail": "sairaj@mail.com",
+            "admin": "sairaj desouza"
         }
     ]
 }

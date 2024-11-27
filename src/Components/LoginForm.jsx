@@ -36,6 +36,8 @@ export default function LoginForm({ goBack }) {
       if (response.status === 200) {
         localStorage.setItem('authToken', result.token);
         localStorage.setItem('current_user',result.username)
+        localStorage.setItem('role',result.role) 
+        localStorage.setItem('level',result.level)
         setSuccessMessage(result.message);
         console.log(result.token);
         console.log(result)

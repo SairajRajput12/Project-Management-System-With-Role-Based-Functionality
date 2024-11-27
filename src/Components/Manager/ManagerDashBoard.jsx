@@ -15,22 +15,15 @@ export default function ManagerDashBoard() {
     const [projects,setProjects] = useState([]);
     const navigate = useNavigate(); 
 
-    const [userRole, setUserRole] = useState(null);
-    const [useToken, setUseToken] = useState(null);
-
     console.log(projects)
     useEffect(() => {
       const token = localStorage.getItem('authToken');
-      const username = localStorage.getItem('current_user'); 
-      if (token) {
-        // Retrieve user role from localStorage
-        const role = localStorage.getItem('userRole');
-        setUseToken(token);
-      }
-      else{
+      const role = localStorage.getItem('role'); 
+      if (!token || role !== 'manager') {
         navigate('/'); 
       }
 
+      const username = localStorage.getItem('current_user')
       // code to fetch the project data 
       const url = 'http://127.0.0.1:5000/fetch_manager_data'; 
       const fetch_Data = async () => {
@@ -51,7 +44,7 @@ export default function ManagerDashBoard() {
           setProjects(result['project_data']); 
         }
         catch (err) {
-          setError(err.message);
+          console.log('error in fetching data')
         }
       };
 
