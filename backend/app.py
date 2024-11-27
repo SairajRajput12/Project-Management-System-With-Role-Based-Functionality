@@ -123,7 +123,8 @@ def n_update_tasks():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-    return jsonify({"message":"Task Updated Succesfully !!"})
+
+
 @app.route('/add_projects',methods=['POST']) 
 def add_project(): 
     data1 = request.json
@@ -197,19 +198,20 @@ def login():
     password = data.get('password')
     print(username) 
     print(password)
-
+    name = ''
     if not username or not password:
         return jsonify({"message": "Username and password are required!"}), 400
     print('79')
     users_data = read_users()
     for user in users_data['users']:
         if user['email'] == username and user['password'] == password:
+            name = user['username']
             token = jwt.encode({
                 'user_id': user['username'],
                 'exp': datetime.now() + timedelta(hours=1)
             }, SECRET_KEY, algorithm='HS256')
 
-            return jsonify({"message": "Login successful!","level":"user","role":user['role'],"token": token}), 200
+            return jsonify({"message": "Login successful!","username":name,"level":"user","role":user['role'],"token": token}), 200
         
     for user in users_data['admin']:
         if user['email'] == username and user['password'] == password:
@@ -218,17 +220,94 @@ def login():
                 'exp': datetime.now() + timedelta(hours=1)
             }, SECRET_KEY, algorithm='HS256')
 
-            return jsonify({"message": "Login successful!","level":"admin", "token": token}), 200
+            return jsonify({"message": "Login successful!","username":name,"level":"admin", "token": token}), 200
+
 
 
     return jsonify({"message": "Invalid username or password!"}), 401
 
+@app.route('/update_user_tasks', methods=['POST'])
+def update_user_tasks():
+    try:
+        # Parse the incoming JSON data
+        data = request.json
+        project_name = data.get('project_name')
+        username = data.get('username')
+        task_data = data.get('task_data')
+        print(username) 
+        print(project_name) 
+        print(task_data)
+        if not project_name or not username or not task_data:
+            return jsonify({"error": "Invalid or missing parameters"}), 400
+
+        # Read the existing projects data
+        user_data = read_users()  # Assuming it reads the data as a dictionary
+        projects = user_data.get('projects', [])
+
+        # Find the project by name
+        project = next((proj for proj in projects if proj['name'] == project_name), None)
+
+        if project is None:
+            return jsonify({"error": "Project not found"}), 404
+
+        # Find the user in the project
+        for user in project.get('Users', []):
+            if user.get('username') == username:
+                # Update the tasks for the user
+                user['tasks'] = task_data
+                break
+        else:
+            return jsonify({"error": "User not found in the project"}), 404
+
+        # Save the updated user data
+        write_users(user_data)  # Assuming it writes the updated data back to storage
+
+        return jsonify({"message": "Tasks updated successfully"}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/fetch_data',methods=['GET'])
 def get_projects():
     user_data = read_users() 
     project_data = user_data['projects']
     return jsonify({"message":"Data fetched succesfully","project_data":project_data}),200
+
+@app.route('/fetch_tasks', methods=['POST'])
+def get_user_tasks():
+    try:
+        print('Fetching user projects...')
+        data = request.json
+        print(data)
+        username = data.get('username')
+        if not username:
+            return jsonify({"error": "Username is required!"}), 400
+
+        print(f"Username: {username}")
+        user_data = read_users()
+
+        projects = user_data.get('projects', [])
+        user_tasks = []
+
+        for project in projects:
+            # Assuming tasks for a user are stored under 'Users' key
+            assigned_users = project.get('Users', [])
+            print(f"Assigned users in project: {assigned_users}")
+
+            # Check if the `Users` field is a list of dictionaries
+            if any(user.get('username') == username for user in assigned_users if isinstance(user, dict)):
+                user_tasks.append(project)
+
+        print(f"User tasks: {user_tasks}")
+
+        if not user_tasks:
+            return jsonify({"message": "No tasks found for the user", "project_data": []}), 200
+
+        return jsonify({"message": "Tasks fetched successfully", "project_data": user_tasks}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 @app.route('/profile', methods=['GET'])
 def profile():

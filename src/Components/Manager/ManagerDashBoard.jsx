@@ -62,7 +62,7 @@ export default function ManagerDashBoard() {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ index:index,task_data:tasks }), // Corrected body structure
+            body: JSON.stringify({ index:index,task_data:tasks }),
           });
     
           if (!response.ok) {

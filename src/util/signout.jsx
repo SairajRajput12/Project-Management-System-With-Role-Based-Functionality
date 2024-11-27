@@ -19,6 +19,7 @@ const handleSignout = async () => {
         // Clear token and role from local storage
         localStorage.removeItem('authToken');
         localStorage.removeItem('userRole');
+        localStorage.removeItem('current_user'); 
 
         // Notify user
         alert('You have been logged out successfully!');

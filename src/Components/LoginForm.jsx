@@ -32,11 +32,14 @@ export default function LoginForm({ goBack }) {
 
       const result = await response.json();
       setMessage(result.message);
-
+      console.log(result); 
       if (response.status === 200) {
         localStorage.setItem('authToken', result.token);
+        localStorage.setItem('current_user',result.username)
         setSuccessMessage(result.message);
         console.log(result.token);
+        console.log(result)
+        
         console.log('Login successful!');
         // console.log()
         // Redirect based on user role

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SideBoard from '../../UI/SideBoard'
 import DashBoard from '../../UI/DashBoard'
 import ViewBoard from '../../UI/ViewBoard'
@@ -6,24 +6,68 @@ import Button from '../../UI/Button'
 import UserProjects from './UserProjects'
 import ViewUserProjects from './ViewUserProjects'
 import handleSignout from '../../util/signout'
+import { useNavigate } from 'react-router-dom'
+
 
 export default function UserDashBoard() {
-  const [currentTab,setTab] = useState('your-project'); 
-  const [projects,setProjects] = useState( [
-    {name:'GTA 3',ProjectStatus:'Completed',Project_Manager:'Lezley Benzes',Starting_Date:'01/01/1994',Ending_Date:'12/07/1997',user:[{user_name:'sairaj rajput',progress:'80%'},{user_name:'sanket ganorkar',progress:'90%'},{user_name:'vilas rabad',progress:'95%'},{user_name:'sahil renapurkar',progress:'98%'},{user_name:'tushar kalaskar',progress:'69%'}]}, 
-    {name:'GTA Vice City',ProjectStatus:'Completed',Project_Manager:'Lezley Benzes',Starting_Date:'01/01/1998',Ending_Date:'12/07/2002',user:[{user_name:'sairaj rajput',progress:'80%'},{user_name:'sanket ganorkar',progress:'90%'},{user_name:'vilas rabad',progress:'95%'},{user_name:'sahil renapurkar',progress:'98%'},{user_name:'tushar kalaskar',progress:'69%'}]}, 
-    {name:'GTA San Andrease',ProjectStatus:'inprogress',Project_Manager:'Lezley Benzes',Starting_Date:'01/01/1998',Ending_Date:'12/07/2002',user:[{user_name:'sairaj rajput',progress:'80%'},{user_name:'sanket ganorkar',progress:'90%'},{user_name:'vilas rabad',progress:'95%'},{user_name:'sahil renapurkar',progress:'98%'},{user_name:'tushar kalaskar',progress:'69%'}]}, 
-    {name:'GTA 4',ProjectStatus:'Completed',Project_Manager:'Lezley Benzes',Starting_Date:'01/01/1998',Ending_Date:'12/07/2002',user:[{user_name:'sairaj rajput',progress:'80%'},{user_name:'sanket ganorkar',progress:'90%'},{user_name:'vilas rabad',progress:'95%'},{user_name:'sahil renapurkar',progress:'98%'},{user_name:'tushar kalaskar',progress:'69%'}]}, 
-    {name:'GTA 5',ProjectStatus:'Completed',Project_Manager:'Lezley Benzes',Starting_Date:'01/01/1998',Ending_Date:'12/07/2002',user:[{user_name:'sairaj rajput',progress:'80%'},{user_name:'sanket ganorkar',progress:'90%'},{user_name:'vilas rabad',progress:'95%'},{user_name:'sahil renapurkar',progress:'98%'},{user_name:'tushar kalaskar',progress:'69%'}]}
- ]);
+    const [currentTab,setTab] = useState('your-project'); 
+    const [projects,setProjects] = useState([]);
+    const navigate = useNavigate(); 
 
- let content = null; 
- if(currentTab === 'user-projects'){
-    content = <UserProjects projects={projects} />
- }
- else{
-    content =  <ViewUserProjects projects={projects} />
- }
+    const [userRole, setUserRole] = useState(null);
+    const [useToken, setUseToken] = useState(null);
+
+    console.log(projects)
+    useEffect(() => {
+      const token = localStorage.getItem('authToken');
+      const username = localStorage.getItem('current_user'); 
+      console.log('line 24 and current login user is ',username); 
+      if (token) {
+        // Retrieve user role from localStorage
+        const role = localStorage.getItem('userRole');
+        setUseToken(token);
+      }
+      else{
+        navigate('/'); 
+      }
+
+      // code to fetch the project data 
+      const url = 'http://127.0.0.1:5000/fetch_tasks'; 
+      const fetch_Data = async () => {
+        try{
+          const response = await fetch(url,{
+             method:'POST', 
+             headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username:username }), 
+          }); 
+          if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+          }
+          
+          const result = await response.json();
+          console.log(result);
+          console.log(result['project_data'])
+          setProjects(result['project_data']); 
+        }
+        catch (err) {
+          setError(err.message);
+        }
+      };
+
+      fetch_Data();
+      console.log('data fetched succesfully !!');
+      console.log(projects)
+    }, [navigate]);
+
+    let content = null; 
+    if(currentTab === 'user-projects'){
+        content = <UserProjects projects={projects} />
+    }
+    else{
+        content =  <ViewUserProjects projects={projects} />
+    }
 
 
   return (
