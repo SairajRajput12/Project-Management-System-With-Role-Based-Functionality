@@ -32,7 +32,7 @@ export default function ManagerDashBoard() {
       }
 
       // code to fetch the project data 
-      const url = 'http://127.0.0.1:5000/fetch_data'; 
+      const url = 'http://127.0.0.1:5000/fetch_manager_data'; 
       const fetch_Data = async () => {
         try{
           const response = await fetch(url,{
@@ -62,6 +62,7 @@ export default function ManagerDashBoard() {
 
     const update_from_backend = async(index,tasks) => {
         console.log('update tasks from backend is called !');
+        let project_name = projects[index].name
         try {
           console.log('Sending data to backend', tasks);
           const response = await fetch('http://127.0.0.1:5000/update_tasks', {
@@ -69,7 +70,7 @@ export default function ManagerDashBoard() {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ index:index,task_data:tasks }),
+            body: JSON.stringify({ index:index,task_data:tasks,project_name:project_name }),
           });
     
           if (!response.ok) {

@@ -164,43 +164,48 @@ def signup():
     write_users(users_data)
     return jsonify({"message": "User registered successfully."}), 200
 
-@app.route('/update_tasks',methods=['POST'])
+@app.route('/update_tasks', methods=['POST'])
 def n_update_tasks(): 
     try:
-        print('updating starting !!!')
+        print('Updating tasks starting !!!')
         # Parse incoming JSON data
         data = request.json
         print("Received data:", data)
-        index = data.get('index') 
-        project_data = data.get('task_data')
 
+        # Extract required data from the JSON payload
+        task_data = data.get('task_data')
+        project_name = data.get('project_name')
 
-        project_data = data
-        print('project response mil gaya')
-        if not data:
-            return jsonify({"error": "No data provided"}), 400
+        if not data or not project_name or not task_data:
+            return jsonify({"error": "Project name and task data are required!"}), 400
         
         # Read existing user data
         user_data = read_users()
-        print('line 53') 
-        print('below is user data')
-        print(user_data)
+        print('User data fetched successfully.')
+
+        # Ensure "projects" exists in user_data
         if "projects" not in user_data:
             user_data["projects"] = []
         
-        # Update projects
-        user_data["projects"][index]["Users"] = project_data['task_data']  # Overwrite projects; for partial updates, adjust logic
+        # Update the "Users" attribute of the specified project
+        project_found = False
+        for project in user_data['projects']: 
+            if project.get('name') == project_name:  # Access project name correctly
+                project['Users'] = task_data  # Update the "Users" attribute
+                project_found = True
+                break  # Exit the loop once the project is found
+        
+        if not project_found:
+            return jsonify({"error": f"Project '{project_name}' not found!"}), 404
         
         # Write updated data back
-        print(user_data)
         write_users(user_data)
-        
-        return jsonify({"message": "Projects updated successfully!"}), 200
+        print('User data updated successfully.')
+
+        return jsonify({"message": "Project tasks updated successfully!"}), 200
     
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
 
 @app.route('/add_projects',methods=['POST']) 
 def add_project(): 
@@ -384,6 +389,48 @@ def get_projects():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+
+@app.route('/fetch_manager_data', methods=['POST'])
+def fetch_manager_projects():
+    try:
+        print('Fetching user projects...')
+        data = request.json
+        print(data)
+        user_name = data.get('user_name')  # Getting user_name from the request body
+        
+        if not user_name:
+            return jsonify({"error": "User name is required!"}), 400
+        print(f"Fetching projects for user: {user_name}")
+
+        # Read user data
+        user_data = read_users()
+
+        projects = user_data.get('projects', [])
+        user_projects = []
+        # print(projects)
+        # Iterate through projects to find the ones that the user is assigned to or is the admin
+        for project in projects:
+            # print(project)
+            print('line 292',project["Project_Manager"])
+            
+            admin = project["Project_Manager"]  # Fetch the admin attribute
+            print(f"Project: {project['name']}, Admin: {admin}")
+            print(admin)
+            # If the user is either assigned to the project or is the admin
+            if user_name == admin:
+                user_projects.append(project)
+
+        print('appended')
+        # If no projects are found for the user
+        if not user_projects:
+            return jsonify({"message": "No projects found for the user", "project_data": []}), 200
+
+        return jsonify({"message": "Projects fetched successfully", "project_data": user_projects}), 200
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
 
 
 
