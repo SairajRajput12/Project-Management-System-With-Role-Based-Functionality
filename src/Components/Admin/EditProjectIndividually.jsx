@@ -1,51 +1,54 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./EditProjectIndividually.css";
 
-export default function EditProjectIndividually({ update_to_backend, goback,data,index,updateProjectByIndex }) {
+export default function EditProjectIndividually({
+  update_to_backend,
+  goback,
+  data,
+  index,
+  updateProjectByIndex,
+}) {
   const [projectData, setProjectData] = useState(data);
   const [isEditing, setIsEditing] = useState(false);
-  console.log(data); 
-  
-  // Handle changes to input fields
+
+  // Calculate user progress based on tasks
+  const calculateProgress = (tasks) => {
+    if (!tasks || tasks.length === 0) return "0%";
+    const completedTasks = tasks.filter((task) => task.status === 'Completed').length;
+    return `${Math.round((completedTasks / tasks.length) * 100)}%`;
+  };
+
+  // Update progress for all users when data changes
+  useEffect(() => {
+    const updatedUsers = projectData.Users?.map((user) => ({
+      ...user,
+      progress: calculateProgress(user.tasks), // Calculate progress for each user
+    }));
+    setProjectData((prev) => ({ ...prev, Users: updatedUsers }));
+  }, [data]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
-    // Calculate the updated project data
-    console.log(name); 
     const updatedData = { ...projectData, [name]: value };
-  
-    // Update the local state
     setProjectData(updatedData);
-  
-    // Call the update function with the updated data
     updateProjectByIndex(index, updatedData);
-    
   };
-  
 
-  // Toggle editing mode
   const toggleEditing = () => setIsEditing(!isEditing);
 
-  // Remove a user from the project
   const handleRemoveUser = (userIndex) => {
     const updatedUsers = [...projectData.Users];
-    updatedUsers.splice(userIndex, 1); // Remove user
-    console.log('Updated Users:', updatedUsers);
-  
-    // Update the state
+    updatedUsers.splice(userIndex, 1);
     const updatedProjectData = { ...projectData, Users: updatedUsers };
     setProjectData(updatedProjectData);
-  
-    // Use the updated state explicitly
-    updateProjectByIndex(index, updatedProjectData); // Use the updated object here
-    update_to_backend(updatedProjectData,index)
+    updateProjectByIndex(index, updatedProjectData);
+    update_to_backend(updatedProjectData, index);
   };
 
   const handleSave = () => {
-      toggleEditing(); 
-      update_to_backend(projectData,index)
-  }
-  
+    toggleEditing();
+    update_to_backend(projectData, index);
+  };
 
   return (
     <div className="project-container">
@@ -138,13 +141,12 @@ export default function EditProjectIndividually({ update_to_backend, goback,data
         <h3 className="user-progress-title">User Progress</h3>
         <div className="user-list">
           {projectData.Users && projectData.Users.length > 0 ? (
-            projectData.Users.map((user, userIndex) =>{ 
-            return (
-              <div key={userIndex} className="user-item">
-                {/* Display User Name */}
-                <span className="user-name">{user.username}</span>
+            projectData.Users.map((user, userIndex) => {
 
-                {/* Display Progress Bar */}
+              console.log(user); 
+              return (
+              <div key={userIndex} className="user-item">
+                <span className="user-name">{user.username}</span>
                 <div className="progress-bar-container">
                   <div
                     className="progress-bar"
@@ -152,8 +154,6 @@ export default function EditProjectIndividually({ update_to_backend, goback,data
                   ></div>
                   <span className="progress-label">{user.progress}</span>
                 </div>
-
-                {/* Remove User Button (Visible Only in Editing Mode) */}
                 {isEditing && (
                   <button
                     className="remove-button"
@@ -163,14 +163,13 @@ export default function EditProjectIndividually({ update_to_backend, goback,data
                   </button>
                 )}
               </div>
-            )})
+            )
+            })
           ) : (
             <p className="no-users">No users assigned to this project.</p>
           )}
         </div>
 
-
-        {/* Action Buttons */}
         <div className="buttons">
           <button onClick={handleSave} className="button">
             {isEditing ? "Save Changes" : "Edit"}
@@ -180,7 +179,6 @@ export default function EditProjectIndividually({ update_to_backend, goback,data
               Cancel
             </button>
           )}
-
           <button onClick={(e) => goback(e)}>Go Back</button>
         </div>
       </div>

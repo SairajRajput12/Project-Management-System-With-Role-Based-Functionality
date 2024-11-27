@@ -11,24 +11,6 @@
             "email": "sanket@gmail.com",
             "password": "securePass",
             "role": "developer"
-        },
-        {
-            "username": "makima",
-            "email": "iloveyousairaj@gmail.com",
-            "password": "sairaj maza raja",
-            "role": "developer"
-        },
-        {
-            "username": "sairaj and makima",
-            "password": "sairaj",
-            "email": "iloveyousairaj@gmail.com",
-            "role": "developer"
-        },
-        {
-            "username": "sairajp",
-            "password": "sairaj",
-            "email": "iloveyousairaj@gmail.com",
-            "role": "developer"
         }
     ],
     "admin": [
@@ -50,7 +32,7 @@
                     "progress": "80%",
                     "tasks": [
                         {
-                            "status": "Completed",
+                            "status": "Ongoing",
                             "task_name": "develop frontend"
                         },
                         {
@@ -64,7 +46,7 @@
                     "progress": "69%",
                     "tasks": [
                         {
-                            "status": "Completed",
+                            "status": "Ongoing",
                             "task_name": "Look for marketting stuffs"
                         },
                         {
