@@ -121,13 +121,13 @@ export default function EditProjectIndividually({ goback,data,index,updateProjec
         {/* Display User Progress */}
         <h3 className="user-progress-title">User Progress</h3>
         <div className="user-list">
-          {projectData.user && projectData.user.length > 0 ? (
-            projectData.user.map((user, userIndex) =>{ 
+          {projectData.Users && projectData.Users.length > 0 ? (
+            projectData.Users.map((user, userIndex) =>{ 
             console.log(user);
             return (
               <div key={userIndex} className="user-item">
                 {/* Display User Name */}
-                <span className="user-name">{user.user_name}</span>
+                <span className="user-name">{user.username}</span>
 
                 {/* Display Progress Bar */}
                 <div className="progress-bar-container">

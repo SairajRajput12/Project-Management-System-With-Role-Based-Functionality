@@ -132,6 +132,12 @@ def login():
     return jsonify({"message": "Invalid username or password!"}), 401
 
 
+@app.route('/fetch_data',methods=['GET'])
+def get_projects():
+    user_data = read_users() 
+    project_data = user_data['projects']
+    return jsonify({"message":"Data fetched succesfully","project_data":project_data}),200
+
 @app.route('/profile', methods=['GET'])
 def profile():
     token = request.headers.get('Authorization')
