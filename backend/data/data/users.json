@@ -37,10 +37,11 @@
                     "email": "sairaj@mail.com",
                     "progress": "0%",
                     "role": "manager",
+                    "status": 0,
                     "tasks": [
                         {
-                            "task_name": "Review Progress",
-                            "status": "Not Completed"
+                            "status": "Ongoing",
+                            "task_name": "Hi"
                         }
                     ],
                     "username": "Lezley Benzes"
@@ -49,10 +50,11 @@
                     "email": "sanket@gmail.com",
                     "progress": "0%",
                     "role": "developer",
+                    "status": 0,
                     "tasks": [
                         {
-                            "task_name": "See Revies",
-                            "status": "Not Completed"
+                            "status": "Completed",
+                            "task_name": "See you"
                         }
                     ],
                     "username": "sanket ganorkar"
@@ -74,17 +76,24 @@
                     "email": "sairaj@mail.com",
                     "progress": "0%",
                     "role": "manager",
-                    "tasks": [],
+                    "status": 0,
+                    "tasks": [
+                        {
+                            "status": "Ongoing",
+                            "task_name": "Hi"
+                        }
+                    ],
                     "username": "Lezley Benzes"
                 },
                 {
                     "email": "sanket@gmail.com",
                     "progress": "0%",
                     "role": "developer",
+                    "status": 0,
                     "tasks": [
                         {
-                            "task_name": "See Revies",
-                            "status": "Not Completed"
+                            "status": "Completed",
+                            "task_name": "See you"
                         }
                     ],
                     "username": "sanket ganorkar"
@@ -182,18 +191,30 @@
             "Ending_Date": "2002-07-12",
             "Users": [
                 {
-                    "username": "Lezley Benzes",
                     "email": "sairaj@mail.com",
-                    "role": "manager",
                     "progress": "0%",
-                    "tasks": []
+                    "role": "manager",
+                    "status": 0,
+                    "tasks": [
+                        {
+                            "status": "Completed",
+                            "task_name": "Hi"
+                        }
+                    ],
+                    "username": "Lezley Benzes"
                 },
                 {
-                    "username": "sanket ganorkar",
                     "email": "sanket@gmail.com",
-                    "role": "developer",
                     "progress": "0%",
-                    "tasks": []
+                    "role": "developer",
+                    "status": 0,
+                    "tasks": [
+                        {
+                            "status": "Completed",
+                            "task_name": "See you"
+                        }
+                    ],
+                    "username": "sanket ganorkar"
                 }
             ],
             "ProjectStatus": "Pending",

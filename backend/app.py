@@ -170,11 +170,13 @@ def n_update_tasks():
         print('Updating tasks starting !!!')
         # Parse incoming JSON data
         data = request.json
-        print("Received data:", data)
+        # print("Received data:", data)
 
         # Extract required data from the JSON payload
         task_data = data.get('task_data')
         project_name = data.get('project_name')
+        print('project name is ',project_name) 
+        # print(task_data)
 
         if not data or not project_name or not task_data:
             return jsonify({"error": "Project name and task data are required!"}), 400
@@ -195,8 +197,8 @@ def n_update_tasks():
         for project in user_data['projects']: 
             print(project.get('name'))
             if project.get('name') == project_name:  # Access project name correctly
-                user_data['projects'][ind]['Users'] = task_data  # Update the "Users" attribute
-                print(user_data['projects'][ind]['Users'])
+                project['Users'] = task_data  # Update the "Users" attribute
+                # print(user_data['projects'][ind]['Users'])
                 project_found = True
                 break  # Exit the loop once the project is found
             ind = ind + 1

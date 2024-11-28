@@ -1,79 +1,87 @@
-import React, { useState } from 'react'
-import Button from '../../UI/Button'
+import React, { useState } from 'react';
+import Button from '../../UI/Button';
 import ManagerTaskBoard from './ManagerTaskBoard';
 
-export default function ManagerProjects({projects,updateProjectViaIndex}) {
-  const [index,setIndex] = useState(null); 
-
+export default function ManagerProjects({ projects, updateProjectViaIndex }) {
+  const [selectedIndex, setSelectedIndex] = useState(null);
   const [tasks, setTasks] = useState([]);
 
+  // Handle task status changes
+  console.log(tasks);
   
-  // Function to handle task status change
   const handleStatusChange = (employeeIndex, taskIndex, newStatus) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[employeeIndex].tasks[taskIndex].status = newStatus;
-    setTasks(updatedTasks);
-    updateProjectViaIndex(employeeIndex,tasks); 
+    const updatedTasks = tasks.map((employee, eIdx) => {
+      if (eIdx === employeeIndex) {
+        return {
+          ...employee,
+          tasks: employee.tasks.map((task, tIdx) =>
+            tIdx === taskIndex ? { ...task, status: newStatus } : task
+          ),
+        };
+      }
+      return employee;
+    });
+  
+    setTasks(updatedTasks); // Update local state
+    console.log(selectedIndex);
+    
+    updateProjectViaIndex(selectedIndex, updatedTasks); // Update the parent state
   };
+  
 
-  // Function to add a new task for an employee
-  const addTask = (employeeIndex) => {
-    const taskName = prompt("Enter the task name:");
+  // Add a new task
+  const addTask = () => {
+    const taskName = prompt('Enter the task name:');
     if (taskName) {
-      const updatedTasks = [...tasks];
-      updatedTasks[employeeIndex].tasks.push({ task_name: taskName, status: "Not Completed" });
+      const updatedTasks = [...tasks, { task_name: taskName, status: 'Not Completed' }];
       setTasks(updatedTasks);
-      updateProjectViaIndex(employeeIndex,tasks)
+      updateProjectViaIndex(selectedIndex, updatedTasks);
     }
   };
 
-  // Function to delete a task for an employee
-  const deleteTask = (employeeIndex, taskIndex) => {
-    const updatedTasks = [...tasks];
-    updatedTasks[employeeIndex].tasks.splice(taskIndex, 1);
+  // Delete a task
+  const deleteTask = (taskIndex) => {
+    const updatedTasks = tasks.filter((_, idx) => idx !== taskIndex);
     setTasks(updatedTasks);
-    updateProjectViaIndex(index,tasks); 
+    updateProjectViaIndex(selectedIndex, updatedTasks);
   };
 
-  const handleIndex = (index1) => {
-    console.log(projects);
-    console.log(index1); 
-    setTasks(projects[index1-1].Users); 
-    setIndex(projects[index1-1]); 
-    console.log(projects[index1-1].Users); 
-  }
+  // Handle project selection
+  const handleSelectProject = (index) => {
+    setSelectedIndex(index);
+    setTasks(projects[index]?.Users || []);
+  };
 
+  const renderContent = () => {
+    if (selectedIndex !== null) {
+      return (
+        <ManagerTaskBoard
+          goBack={() => setSelectedIndex(null)}
+          deleteTask={deleteTask}
+          tasks={tasks} // Pass the latest tasks state
+          handleStatusChange={handleStatusChange}
+          addTask={addTask}
+        />
 
-
-  let content = null; 
-  let heading = null; 
-  if(index){
-    console.log(tasks); 
-    heading = <h1>Task Board</h1>; 
-    content = <ManagerTaskBoard goBack={() => setIndex(null)} deleteTask ={deleteTask} tasks={tasks} handleStatusChange={handleStatusChange} addTask={addTask}  projects={projects}/>;
-  }
-  else{
-    heading = <h1>Your Projects</h1>; 
-    content = projects.map((user,index) => {
-        return(
-            <div className='project' key={index}>
-                <label>Project Name: {user.name}</label>
-                <label>Project Status: 
-                <p className={`status ${user.ProjectStatus.toLowerCase()}`}>{user.ProjectStatus}</p>
-                </label>
-                <label>Assigned Date: {user.Starting_Date}</label>
-                <Button className='edit-project-button' onSubmit={() => handleIndex(index+1)}>Edit Project</Button>
-            </div>
-        )
-   });
-  }
+      );
+    }
+    return projects.map((project, idx) => (
+      <div className="project" key={idx}>
+        <label>Project Name: {project.name}</label>
+        <label>
+          Project Status:
+          <p className={`status ${project.ProjectStatus.toLowerCase()}`}>{project.ProjectStatus}</p>
+        </label>
+        <label>Assigned Date: {project.Starting_Date}</label>
+        <Button className='edit-project-button' onSubmit={() => handleSelectProject(idx)}>Edit Project</Button>
+      </div>
+    ));
+  };
 
   return (
-        <>
-          {heading}
-          <div className='admin-projects'>
-                {content}
-          </div>
-        </>
-  )
+    <>
+      <h1>{selectedIndex !== null ? 'Task Board' : 'Your Projects'}</h1>
+      <div className="admin-projects">{renderContent()}</div>
+    </>
+  );
 }
