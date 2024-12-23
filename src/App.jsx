@@ -12,10 +12,6 @@ const router = createBrowserRouter([
     element: <FormSelection />, 
   }, 
   {
-    path:'/login', 
-    element: <LoginForm />
-  }, 
-  {
     path:'/admin', 
     element: <AdminDashBoard />,
   }, 
