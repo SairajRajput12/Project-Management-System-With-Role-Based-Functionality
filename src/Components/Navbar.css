@@ -1,0 +1,35 @@
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: 10px 20px; */
+    background-color: #f4f4f4;
+    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .other-options {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-right: 2%;
+  }
+  
+  .other-options div{
+    background-color: #8b0cfa; 
+    color: white; 
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+
+  .other-options h4 {
+    margin: 0;
+    cursor: pointer;
+    color: white;
+    transition: color 0.3s;
+  }
+  
+  .other-options h4:hover {
+    color: #007bff;
+  }
+  

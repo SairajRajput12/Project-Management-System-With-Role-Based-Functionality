@@ -37,7 +37,6 @@ function FormSelection() {
       <div className="form-container">
         {content}
       </div>
-      {content === null && <h2 style={{marginLeft:'36%'}}>Select on which mode you will prefer to work with us.</h2>}
     </div>
     </>
   );

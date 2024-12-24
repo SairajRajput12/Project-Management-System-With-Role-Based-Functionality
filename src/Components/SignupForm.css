@@ -22,18 +22,18 @@
     padding-top: 50px;
     padding-bottom: 50px;
     border-radius: 14px;
-    color: white;
-    border-color: white;
-    background-color: black;
+    color: black;
+    border-color: black;
+    background-color: white;
 }
 
 .submit-button{
     height: 40px; 
     margin: 12px;
     width: 105px;
-    color: white;
-    background-color: black;
-    border-color: white;
+    color: black;
+    background-color: white;
+    border-color: blue;
     border-radius: 10px;
     font-size: 15px;
 }

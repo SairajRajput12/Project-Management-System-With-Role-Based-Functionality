@@ -5,11 +5,17 @@ import UserDashBoard from './Components/User/UserDashBoard';
 import FormSelection from './Components/FormSelection';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import LoginForm from './Components/LoginForm';
+import Navbar from './Components/Navbar';
+import NormalComponent from './Components/NormalComponent';
 
 const router = createBrowserRouter([
   {
     path:'/', 
     element: <FormSelection />, 
+  }, 
+  {
+    path:'/login', 
+    element: <LoginForm />
   }, 
   {
     path:'/admin', 
@@ -28,7 +34,10 @@ const router = createBrowserRouter([
 
 function App() { 
   return (
-       <RouterProvider router={router} />
+       <>
+           <Navbar />
+           <RouterProvider router={router} />
+       </>
   );
 }
 
