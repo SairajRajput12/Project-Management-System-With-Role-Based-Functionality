@@ -6,7 +6,7 @@ import SingupForm from './SingupForm';
 import '../Components/FormSelection.css'
 
 function FormSelection() {
-    const [activeComponent,changeState] = useState(null)
+    const [activeComponent,changeState] = useState('login')
     let content = null; // Default content to null
     console.log(content);
     if (activeComponent) {

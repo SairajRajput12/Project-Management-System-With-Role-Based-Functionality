@@ -11,7 +11,7 @@ import NormalComponent from './Components/NormalComponent';
 const router = createBrowserRouter([
   {
     path:'/', 
-    element: <FormSelection />, 
+    element: <NormalComponent />, 
   }, 
   {
     path:'/login', 
